@@ -81,7 +81,7 @@ $(document).ready(function(){
     $(sr).insertAfter(".verticalContainer:contains(Location Information)");
     $(sr).insertAfter(".verticalContainer:contains(User Selected Match)");
     for(i = 1;i < $(sr+" tbody tr").length;i++){
-      var ti = sr+" tr:eq("+i+") ";
+      let ti = sr+" tr:eq("+i+") ";
       hma(dt[0],ti+"td:eq(1) span:eq(0)");
       hma(dt[1],ti+"td:eq(2) span:eq(0)");
       hma(dt[2],ti+"td:eq(2) span:eq(1)");
@@ -124,7 +124,7 @@ $(document).ready(function(){
     hma(dt[4],hp+"(Phone:) ~ td");
     hma(dt[5],hp+"(City:) ~ td");
     lop();
-    var obs = new MutationObserver(function(mutations){
+    let obs = new MutationObserver(function(mutations){
       lop();
     });
     obs.observe(document.querySelector(sr),{attributes:true,childList:true,characterData:true});
@@ -147,7 +147,7 @@ $(document).ready(function(){
       lop();
     }
     //LOADING
-    var observer = new MutationObserver(function(mutations){
+    let observer = new MutationObserver(function(mutations){
       //NO SEARCH RESULTS
       if($(":contains(No search results)").length){
         //close();
@@ -208,7 +208,7 @@ $(document).ready(function(){
           $("textarea[name='reason']").val('cannot process without accept button');
         }else{
           if($("#search-results img").length){
-            var l = $("#search-results img").length;
+            let l = $("#search-results img").length;
             if(c == 0 || c == l){
               c = 1;
             }
@@ -218,7 +218,7 @@ $(document).ready(function(){
             b = c-1;
             $("#search-results img").parent().css('background-color','');
             $("#search-results img:eq("+b+")").parent().css('background-color','black');
-            var q = $("#search-results img:eq("+b+")").parent().attr('href').split('/');
+            let q = $("#search-results img:eq("+b+")").parent().attr('href').split('/');
             $("textarea[name='reason']").val('Match not selectable - '+q[3]);
           }
         }
@@ -263,7 +263,7 @@ $(document).ready(function(){
         break;
       case 100:
         if(n == "Suppression Approval"){
-          var l = $(".accept-btn").length;
+          let l = $(".accept-btn").length;
           if(c == 0 || c == 1){
             c = l;
           }
@@ -274,7 +274,7 @@ $(document).ready(function(){
           $(".accept-btn:eq("+b+")").focus();
         }
         else if($(".js-external-id").length){
-          var l = $(".js-external-id").length;
+          let l = $(".js-external-id").length;
           if(c == 0 || c == 1){
             c = l;
           }
@@ -288,7 +288,7 @@ $(document).ready(function(){
       case 13:
       case 97:
         if(n == "Suppression Approval"){
-          var l = $(".accept-btn").length;
+          let l = $(".accept-btn").length;
           if(c == 0 || c == l) {
             c = 1;
           }
@@ -299,7 +299,7 @@ $(document).ready(function(){
           $(".accept-btn:eq("+b+")").focus();
         }
         else if($(".js-external-id").length){
-          var l = $(".js-external-id").length;
+          let l = $(".js-external-id").length;
           if(c == 0 || c == l){
             c = 1;
           }
@@ -319,7 +319,7 @@ $(document).ready(function(){
       case 39:
         if(n == "My Tasks"){
           sl = [];
-          var ab = $("a[target='_blank']").length;
+          let ab = $("a[target='_blank']").length;
           for (i=0;i<ab;i++){ 
             sl[i] = window.open($("a[target='_blank']:eq("+i+")").attr('href'), '_blank');
           }
@@ -337,7 +337,7 @@ $(document).ready(function(){
           window.open("https://maps.google.com/maps?t=k&q="+all.replace("&","%26").replace("#","%23"),'','resizable,height=980,width=940');
         }
         if(n == "My Tasks"){
-          var aa = sl.length;
+          let aa = sl.length;
           var ccc = 0;
           setInterval(function(){
             if(ccc<aa){
