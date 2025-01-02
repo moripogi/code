@@ -355,7 +355,7 @@ $(document).ready(function(){
             }else{
               clearInterval();
             }
-          },200);
+          },500);
         }
         break;
     }
