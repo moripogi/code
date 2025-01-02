@@ -1,6 +1,9 @@
 //DASHBOARD
 $(document).ready(function(){
   var h = $("h1:eq(0)").text();
+  //$("body").append("<h2 class='temps'></h2>");
+  //$("body").append("<h3 class='temps'></h3>");
+  //$(".temps").hide();
   var ph = "table:contains(Location Information) td:contains";
   var hp = "table:contains(User Selected Match) td:contains";
   var sr = "#search-results";
@@ -10,6 +13,7 @@ $(document).ready(function(){
     $(sr).insertBefore(".clear:eq(4)");
     $(hp+"(City:)").css('background-color','');
     $("#search-results img").parent().css('background-color','');
+    //$(".temps").remove();
   });
   if($(":contains(Stop Processing Continuously)").length){
     $("a:contains(Stop Processing Continuously)")[0].click();
