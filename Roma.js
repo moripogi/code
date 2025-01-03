@@ -203,7 +203,7 @@ $(document).ready(function(){
         document.execCommand("copy");
         $temp.remove();
         break;
-      case 106:
+      case 67:
         if(n == "Geocode Validation"){
           window.scrollTo(0,document.body.scrollHeight);
           $("textarea[name='reason']").val('city in business name');
@@ -227,7 +227,7 @@ $(document).ready(function(){
           }
         }
         break;
-      case 99:
+      case 49:
         if(n == "Suppression Approval"){
           $(".accept-btn:eq("+b+")").click();
           $(".reject-btn:eq("+b+")").val(13);
@@ -240,7 +240,7 @@ $(document).ready(function(){
         $(".js-latlng").val("");
         $("input[value='EXISTING']").click();
         break;
-      case 98:
+      case 82:
         if(n == "Suppression Approval"){
           $(".reject-btn:eq("+b+")").val(8);
           $(".reject-btn:eq("+b+")").change(); 
@@ -259,13 +259,13 @@ $(document).ready(function(){
         $("input[value='accept']").click();
         $("input[value='MANUAL']").click();
         break;
-      case 96:
+      case 69:
         $(".js-entered-radio").click();
         $("input[value='add']").click();
         $("input[value='NONE']").click();
         $(".accept-btn:eq("+b+")").click();
         break;
-      case 100:
+      case 56:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
           if(c == 0 || c == 1){
@@ -289,7 +289,7 @@ $(document).ready(function(){
           $(".js-external-id:eq("+b+")").click();
         }
         break;
-      case 13:
+      case 57:
       case 97:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
