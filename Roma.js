@@ -289,7 +289,7 @@ $(document).ready(function(){
           $(".js-external-id:eq("+b+")").click();
         }
         break;
-      case 105
+      case 105:
       case 97:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
