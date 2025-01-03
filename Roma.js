@@ -266,6 +266,7 @@ $(document).ready(function(){
         $(".accept-btn:eq("+b+")").click();
         break;
       case 56:
+      case 104:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
           if(c == 0 || c == 1){
@@ -290,6 +291,7 @@ $(document).ready(function(){
         }
         break;
       case 57:
+      case 105
       case 97:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
