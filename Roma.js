@@ -265,7 +265,6 @@ $(document).ready(function(){
         $("input[value='NONE']").click();
         $(".accept-btn:eq("+b+")").click();
         break;
-      case 56:
       case 104:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
@@ -290,7 +289,6 @@ $(document).ready(function(){
           $(".js-external-id:eq("+b+")").click();
         }
         break;
-      case 57:
       case 105
       case 97:
         if(n == "Suppression Approval"){
