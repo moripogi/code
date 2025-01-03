@@ -266,6 +266,7 @@ $(document).ready(function(){
         $(".accept-btn:eq("+b+")").click();
         break;
       case 104:
+        alert("as");
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
           if(c == 0 || c == 1){
