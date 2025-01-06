@@ -208,7 +208,6 @@ $(document).ready(function(){
           window.scrollTo(0,document.body.scrollHeight);
           $("textarea[name='reason']").val('city in business name');
         }else if(n == "Tags Missing Listing Verification"){
-          window.scrollTo(0,document.body.scrollHeight);
           $("textarea[name='reason']").val('cannot process without accept button');
         }else{
           if($("#search-results img").length){
