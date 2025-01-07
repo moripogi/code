@@ -189,6 +189,7 @@ $(document).ready(function(){
               cc++;
             }else{
               clearInterval();
+              location.reload();
             }
           },150);
         }
