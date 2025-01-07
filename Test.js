@@ -1,9 +1,11 @@
 var 
-refresh = "",
-matchnotselectable_number = "",
-unverified_notadupe = "",
-match_bestguess ="",
-listing_geosuccess_suppress = "",
-previoussearchresult = "",
-nextsearchresult = "",
-open_all_tasks = "";
+refresh = 101,
+matchnotselectable_number = 106,
+unverified_notadupe = 99,
+match_bestguess = 98,
+listing_geosuccess_suppress = 96,
+previoussearchresult = 100,
+nextsearchresult = 97,
+open_all_tasks = 39,
+open_link = 37;
+
