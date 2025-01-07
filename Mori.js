@@ -174,29 +174,6 @@ $(document).ready(function(){
   var n = $("h1:eq(0)").text();
   $(document).keydown(function(e){
     switch(e.keyCode){
-      case refresh:
-        if(n == "Suppression Approval"){
-          $(".reject-btn:eq("+b+")").val(10);
-          $(".reject-btn:eq("+b+")").change(); 
-          $(".reject-btn:eq("+b+")").addClass("selected");
-          $(".accept-btn:eq("+b+")").removeClass("selected");
-        }
-        else if(n == "My Tasks"){
-          var cc = 0;
-          setInterval(function(){
-            if(cc<15){
-              $("a:contains(process tasks continuously)")[0].click();
-              cc++;
-            }else{
-              clearInterval();
-              location.reload();
-            }
-          },150);
-        }
-        else{
-          location.reload();
-        }
-        break;
       case matchnotselectable_number:
         if(n == "Geocode Validation"){
           window.scrollTo(0,document.body.scrollHeight);
