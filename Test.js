@@ -7,5 +7,5 @@ listing_geosuccess_suppress = 96,
 previoussearchresult = 100,
 nextsearchresult = 97,
 open_all_tasks = 39,
-open_link = 37;
+open_link_geo = 37;
 
