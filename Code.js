@@ -185,8 +185,8 @@ $(document).ready(function(){
           var cc = 0;
           setInterval(function(){
             if(cc<15){
-              $("a:contains(process tasks continuously)")[0].click();
               cc++;
+              $("a:contains(process tasks continuously)")[0].click();
             }else{
               clearInterval();
               location.reload();
