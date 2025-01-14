@@ -191,6 +191,7 @@ $(document).ready(function(){
               clearInterval();
             }
           },150);
+          location.reload();
         }
         else{
           location.reload();
