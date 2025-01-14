@@ -189,9 +189,8 @@ $(document).ready(function(){
               $("a:contains(process tasks continuously)")[0].click();
             }else{
               clearInterval();
-              location.reload();
             }
-          },100);
+          },150);
         }
         else{
           location.reload();
