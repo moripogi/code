@@ -145,7 +145,7 @@ $(document).ready(function(){
     //NO SEARCH RESULTS
     if($(":contains(No search results)").length){
       //close();
-      //proclist();
+      proclist();
     }
     //SCANNING
     //else 
@@ -158,7 +158,7 @@ $(document).ready(function(){
       //NO SEARCH RESULTS
       if($(":contains(No search results)").length){
         //close();
-        //proclist();
+        proclist();
       }
       //SCANNING
       //RESULTS
