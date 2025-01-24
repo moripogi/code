@@ -187,7 +187,7 @@ $(document).ready(function(){
         else if(n == "My Tasks"){
           var cc = 0;
           setInterval(function(){
-            if(cc<=10){
+            if(cc<=15){
               cc++;
               $("a:contains(process tasks continuously)")[0].click();
             }else{
@@ -358,7 +358,7 @@ $(document).ready(function(){
             }else{
               clearInterval();
             }
-          },500);
+          },250);
         }
         break;
     }
