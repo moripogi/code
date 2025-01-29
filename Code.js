@@ -176,7 +176,6 @@ $(document).ready(function(){
   var c = 0;
   var n = $("h1:eq(0)").text();
   $(document).keydown(function(e){
-    e.preventDefault();
     switch(e.keyCode){
       case 101:
         if(n == "Suppression Approval"){
@@ -294,6 +293,7 @@ $(document).ready(function(){
         }
         break;
       case 13:
+        e.preventDefault();
       case 97:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
