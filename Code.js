@@ -83,7 +83,7 @@ $(document).ready(function(){
       close();
     }
     if($(":contains(Scanning Unavailable Exception)").length){
-      location.reload();
+      //location.reload();
     }
     $(sr).insertAfter(".verticalContainer:contains(Location Information)");
     $(sr).insertAfter(".verticalContainer:contains(User Selected Match)");
