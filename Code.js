@@ -373,13 +373,14 @@ $(document).ready(function(){
         else if(n == "My Tasks"){
           var cc = 0;
           setInterval(function(){
-            if(cc<15){
-              $("a:contains(process tasks continuously)")[0].click();
+            if(cc<=15){
               cc++;
+              $("a:contains(process tasks continuously)")[0].click();
             }else{
               clearInterval();
             }
           },150);
+          location.reload();
         }
         else{
           location.reload();
@@ -392,12 +393,11 @@ $(document).ready(function(){
         document.execCommand("copy");
         $temp.remove();
         break;
-      case 67:
+      case 106:
         if(n == "Geocode Validation"){
           window.scrollTo(0,document.body.scrollHeight);
           $("textarea[name='reason']").val('city in business name');
         }else if(n == "Tags Missing Listing Verification"){
-          window.scrollTo(0,document.body.scrollHeight);
           $("textarea[name='reason']").val('cannot process without accept button');
         }else{
           if($("#search-results img").length){
@@ -416,7 +416,7 @@ $(document).ready(function(){
           }
         }
         break;
-      case 49:
+      case 99:
         if(n == "Suppression Approval"){
           $(".accept-btn:eq("+b+")").click();
           $(".reject-btn:eq("+b+")").val(13);
@@ -429,7 +429,7 @@ $(document).ready(function(){
         $(".js-latlng").val("");
         $("input[value='EXISTING']").click();
         break;
-      case 82:
+      case 98:
         if(n == "Suppression Approval"){
           $(".reject-btn:eq("+b+")").val(8);
           $(".reject-btn:eq("+b+")").change(); 
@@ -448,13 +448,13 @@ $(document).ready(function(){
         $("input[value='accept']").click();
         $("input[value='MANUAL']").click();
         break;
-      case 69:
+      case 96:
         $(".js-entered-radio").click();
         $("input[value='add']").click();
         $("input[value='NONE']").click();
         $(".accept-btn:eq("+b+")").click();
         break;
-      case 104:
+      case 100:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
           if(c == 0 || c == 1){
@@ -478,7 +478,8 @@ $(document).ready(function(){
           $(".js-external-id:eq("+b+")").click();
         }
         break;
-      case 105:
+      case 13:
+        e.preventDefault();
       case 97:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
@@ -544,7 +545,7 @@ $(document).ready(function(){
             }else{
               clearInterval();
             }
-          },500);
+          },250);
         }
         break;
     }
