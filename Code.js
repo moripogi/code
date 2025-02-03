@@ -79,7 +79,7 @@ $(document).ready(function(){
   }
   //MOVE&LOOP
   function lop(){
-    if($(":contains(error code: 502)").length || /*$(":contains(Scanning Unavailable Exception)").length || */ $(":contains(RpcException occurred)").length || $(":contains(SearchListings call has been timed out.)").length || $(":contains(503 Service Unavailable)").length || $(":contains(502 Bad Gateway)").length || $(":contains(Exception making a proxy request to Url)").length){
+    if($(":contains(error code: 502)").length || $(":contains(Scanning Unavailable Exception)").length || $(":contains(RpcException occurred)").length || $(":contains(SearchListings call has been timed out.)").length || $(":contains(503 Service Unavailable)").length || $(":contains(502 Bad Gateway)").length || $(":contains(Exception making a proxy request to Url)").length){
       close();
     }
     $(sr).insertAfter(".verticalContainer:contains(Location Information)");
