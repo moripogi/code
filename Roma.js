@@ -28,13 +28,6 @@ $(document).ready(function(){
           location.reload();
         }
         break;
-      case 107:
-        let $temp = $("<input>");
-        $("body").append($temp);
-        $temp.val(window.location.href).select();
-        document.execCommand("copy");
-        $temp.remove();
-        break;
       case 67:
         if(n == "Geocode Validation"){
           window.scrollTo(0,document.body.scrollHeight);
@@ -122,7 +115,6 @@ $(document).ready(function(){
         }
         break;
       case 105:
-      case 97:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
           if(c == 0 || c == l) {
@@ -145,12 +137,6 @@ $(document).ready(function(){
           b = c-1;
           $(".js-external-id:eq("+b+")").click();
         }
-        break;
-      case 102:
-        $(".reject-btn:eq("+b+")").val(9);
-        $(".reject-btn:eq("+b+")").change(); 
-        $(".reject-btn:eq("+b+")").addClass("selected");
-        $(".accept-btn:eq("+b+")").removeClass("selected");
         break;
       case 39:
         if(n == "My Tasks"){
