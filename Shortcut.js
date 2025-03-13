@@ -1,4 +1,161 @@
-//DASHBOARD
+//SHORTCUT KEYS-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$(document).ready(function(){
+  var sl = [];
+  var b;
+  var c = 0;
+  var n = $("h1:eq(0)").text();
+  $(document).keydown(function(e){
+    switch(e.keyCode){
+      case matchnotselectable_number:
+        if(n == "Geocode Validation"){
+          window.scrollTo(0,document.body.scrollHeight);
+          $("textarea[name='reason']").val('city in business name');
+        }else if(n == "Tags Missing Listing Verification"){
+          $("textarea[name='reason']").val('cannot process without accept button');
+        }else{
+          if($("#search-results img").length){
+            var l = $("#search-results img").length;
+            if(c == 0 || c == l){
+              c = 1;
+            }
+            else{
+              c++;
+            }
+            b = c-1;
+            $("#search-results img").parent().css('background-color','');
+            $("#search-results img:eq("+b+")").parent().css('background-color','black');
+            var q = $("#search-results img:eq("+b+")").parent().attr('href').split('/');
+            $("textarea[name='reason']").val('Match not selectable - '+q[3]);
+          }
+        }
+        break;
+      case unverified_notadupe:
+        if(n == "Suppression Approval"){
+          $(".accept-btn:eq("+b+")").click();
+          $(".reject-btn:eq("+b+")").val(13);
+          $(".reject-btn:eq("+b+")").change();
+          $(".reject-btn:eq("+b+")").addClass("selected");
+          $(".accept-btn:eq("+b+")").removeClass("selected");
+        }
+        $(".js-unverifiable-radio").click();
+        $("textarea[name='form.comments']").val("Can't locate business");
+        $(".js-latlng").val("");
+        $("input[value='EXISTING']").click();
+        break;
+      case match_bestguess:
+        if(n == "Suppression Approval"){
+          $(".reject-btn:eq("+b+")").val(8);
+          $(".reject-btn:eq("+b+")").change(); 
+          $(".reject-btn:eq("+b+")").addClass("selected");
+          $(".accept-btn:eq("+b+")").removeClass("selected");
+        }
+        if(n == "Manual Search API Task"){
+          navigator.clipboard.readText().then(text => {
+            $("input[name='listingUrlEntry']").val(text);
+          })
+          .catch(err => {
+          });
+        }
+        $(".js-bgm-radio").click();
+        $("input[value='accept']").click();
+        $("input[value='MANUAL']").click();
+        break;
+      case listing_geosuccess_suppress:
+        $(".js-entered-radio").click();
+        $("input[value='add']").click();
+        $("input[value='NONE']").click();
+        $(".accept-btn:eq("+b+")").click();
+        break;
+      case previoussearchresult:
+        if(n == "Suppression Approval"){
+          var l = $(".accept-btn").length;
+          if(c == 0 || c == 1){
+            c = l;
+          }
+          else{
+            c--;
+          }
+          b = c-1;
+          $(".accept-btn:eq("+b+")").focus();
+        }
+        else if($(".js-external-id").length){
+          var l = $(".js-external-id").length;
+          if(c == 0 || c == 1){
+            c = l;
+          }
+          else{
+            c--;
+          }  
+          b = c-1; 
+          $(".js-external-id:eq("+b+")").click();
+        }
+        break;
+      case nextsearchresult:
+        if(n == "Suppression Approval"){
+          var l = $(".accept-btn").length;
+          if(c == 0 || c == l) {
+            c = 1;
+          }
+          else{
+            c++;
+          }
+          b = c-1;
+          $(".accept-btn:eq("+b+")").focus();
+        }
+        else if($(".js-external-id").length){
+          var l = $(".js-external-id").length;
+          if(c == 0 || c == l){
+            c = 1;
+          }
+          else{
+            c++;
+          }
+          b = c-1;
+          $(".js-external-id:eq("+b+")").click();
+        }
+        break;
+      case open_all_tasks:
+        if(n == "My Tasks"){
+          sl = [];
+          var ab = $("a[target='_blank']").length;
+          for (i=0;i<ab;i++){ 
+            sl[i] = window.open($("a[target='_blank']:eq("+i+")").attr('href'), '_blank');
+          }
+        }
+        break;
+      case open_link_geo:
+        if(n == "Suppression Approval"){
+          window.open($("td:contains(Website:) ~ td>a").attr('href'),'','resizable,height=980,width=940');
+        }
+        if(n == "Manual Search API Task"){
+          window.open($("td:contains(Listing URL)>a").attr('href').replace('site:',''),'','resizable,height=980,width=940');
+        }
+        if(n == "Geocode Validation" || n == "Unverified Geocode Validation"){
+          let all = $("td:contains(Name:):eq(0) ~ td").text()+"+"+$("td:contains(1:):eq(0) ~ td").text()+"+"+$("td:contains(2:):eq(0) ~ td").text()+"+"+$("td:contains(City:):eq(0) ~ td").text()+"+"+$("td:contains(State:):eq(0) ~ td").text()+"+"+$("td:contains(Zip:):eq(0) ~ td").text();
+          window.open("https://maps.google.com/maps?t=k&q="+all.replace("&","%26").replace("#","%23"),'','resizable,height=980,width=940');
+        }
+        if(n == "My Tasks"){
+          var aa = sl.length;
+          var ccc = 0;
+          setInterval(function(){
+            if(ccc<aa){
+              try{
+                if(sl[ccc].$(":contains(No search results)").length && sl[ccc].$("h1:eq(0)").text() == "Tags Missing Listing Verification"){
+                  sl[ccc].$("input[value='add']").click();
+                  sl[ccc].$("input[value='Process Task']").click();
+                }
+              }catch{}
+              ccc++;
+            }else{
+              clearInterval();
+            }
+          },500);
+        }
+        break;
+    }
+  });
+});
+//DASHBOARD-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function(){
   var h = $("h1:eq(0)").text();
   //$("body").append("<h2 class='temps'></h2>");
@@ -166,7 +323,7 @@ $(document).ready(function(){
     observer.observe(document.querySelector(sr),{attributes:true,childList:true,characterData:true});
   }
 });
-//MANAGE TOOLS--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//MANAGE TOOLS--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function(){
   var h = $("h1:eq(0)").text();
   var w = window.name;
@@ -354,161 +511,4 @@ $(document).ready(function(){
       });
     }
   }
-});
-//SHORTCUT KEYS
-$(document).ready(function(){
-  var sl = [];
-  var b;
-  var c = 0;
-  var n = $("h1:eq(0)").text();
-  $(document).keydown(function(e){
-    switch(e.keyCode){
-      case matchnotselectable_number:
-        if(n == "Geocode Validation"){
-          window.scrollTo(0,document.body.scrollHeight);
-          $("textarea[name='reason']").val('city in business name');
-        }else if(n == "Tags Missing Listing Verification"){
-          $("textarea[name='reason']").val('cannot process without accept button');
-        }else{
-          if($("#search-results img").length){
-            var l = $("#search-results img").length;
-            if(c == 0 || c == l){
-              c = 1;
-            }
-            else{
-              c++;
-            }
-            b = c-1;
-            $("#search-results img").parent().css('background-color','');
-            $("#search-results img:eq("+b+")").parent().css('background-color','black');
-            var q = $("#search-results img:eq("+b+")").parent().attr('href').split('/');
-            $("textarea[name='reason']").val('Match not selectable - '+q[3]);
-          }
-        }
-        break;
-      case unverified_notadupe:
-        if(n == "Suppression Approval"){
-          $(".accept-btn:eq("+b+")").click();
-          $(".reject-btn:eq("+b+")").val(13);
-          $(".reject-btn:eq("+b+")").change();
-          $(".reject-btn:eq("+b+")").addClass("selected");
-          $(".accept-btn:eq("+b+")").removeClass("selected");
-        }
-        $(".js-unverifiable-radio").click();
-        $("textarea[name='form.comments']").val("Can't locate business");
-        $(".js-latlng").val("");
-        $("input[value='EXISTING']").click();
-        break;
-      case match_bestguess:
-        if(n == "Suppression Approval"){
-          $(".reject-btn:eq("+b+")").val(8);
-          $(".reject-btn:eq("+b+")").change(); 
-          $(".reject-btn:eq("+b+")").addClass("selected");
-          $(".accept-btn:eq("+b+")").removeClass("selected");
-        }
-        if(n == "Manual Search API Task"){
-          navigator.clipboard.readText().then(text => {
-            $("input[name='listingUrlEntry']").val(text);
-          })
-          .catch(err => {
-          });
-        }
-        $(".js-bgm-radio").click();
-        $("input[value='accept']").click();
-        $("input[value='MANUAL']").click();
-        break;
-      case listing_geosuccess_suppress:
-        $(".js-entered-radio").click();
-        $("input[value='add']").click();
-        $("input[value='NONE']").click();
-        $(".accept-btn:eq("+b+")").click();
-        break;
-      case previoussearchresult:
-        if(n == "Suppression Approval"){
-          var l = $(".accept-btn").length;
-          if(c == 0 || c == 1){
-            c = l;
-          }
-          else{
-            c--;
-          }
-          b = c-1;
-          $(".accept-btn:eq("+b+")").focus();
-        }
-        else if($(".js-external-id").length){
-          var l = $(".js-external-id").length;
-          if(c == 0 || c == 1){
-            c = l;
-          }
-          else{
-            c--;
-          }  
-          b = c-1; 
-          $(".js-external-id:eq("+b+")").click();
-        }
-        break;
-      case nextsearchresult:
-        if(n == "Suppression Approval"){
-          var l = $(".accept-btn").length;
-          if(c == 0 || c == l) {
-            c = 1;
-          }
-          else{
-            c++;
-          }
-          b = c-1;
-          $(".accept-btn:eq("+b+")").focus();
-        }
-        else if($(".js-external-id").length){
-          var l = $(".js-external-id").length;
-          if(c == 0 || c == l){
-            c = 1;
-          }
-          else{
-            c++;
-          }
-          b = c-1;
-          $(".js-external-id:eq("+b+")").click();
-        }
-        break;
-      case open_all_tasks:
-        if(n == "My Tasks"){
-          sl = [];
-          var ab = $("a[target='_blank']").length;
-          for (i=0;i<ab;i++){ 
-            sl[i] = window.open($("a[target='_blank']:eq("+i+")").attr('href'), '_blank');
-          }
-        }
-        break;
-      case open_link_geo:
-        if(n == "Suppression Approval"){
-          window.open($("td:contains(Website:) ~ td>a").attr('href'),'','resizable,height=980,width=940');
-        }
-        if(n == "Manual Search API Task"){
-          window.open($("td:contains(Listing URL)>a").attr('href').replace('site:',''),'','resizable,height=980,width=940');
-        }
-        if(n == "Geocode Validation" || n == "Unverified Geocode Validation"){
-          let all = $("td:contains(Name:):eq(0) ~ td").text()+"+"+$("td:contains(1:):eq(0) ~ td").text()+"+"+$("td:contains(2:):eq(0) ~ td").text()+"+"+$("td:contains(City:):eq(0) ~ td").text()+"+"+$("td:contains(State:):eq(0) ~ td").text()+"+"+$("td:contains(Zip:):eq(0) ~ td").text();
-          window.open("https://maps.google.com/maps?t=k&q="+all.replace("&","%26").replace("#","%23"),'','resizable,height=980,width=940');
-        }
-        if(n == "My Tasks"){
-          var aa = sl.length;
-          var ccc = 0;
-          setInterval(function(){
-            if(ccc<aa){
-              try{
-                if(sl[ccc].$(":contains(No search results)").length && sl[ccc].$("h1:eq(0)").text() == "Tags Missing Listing Verification"){
-                  sl[ccc].$("input[value='add']").click();
-                  sl[ccc].$("input[value='Process Task']").click();
-                }
-              }catch{}
-              ccc++;
-            }else{
-              clearInterval();
-            }
-          },500);
-        }
-        break;
-    }
-  });
 });
