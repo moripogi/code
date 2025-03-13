@@ -1,171 +1,3 @@
-//DASHBOARD-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-$(document).ready(function(){
-  var h = $("h1:eq(0)").text();
-  //$("body").append("<h2 class='temps'></h2>");
-  //$("body").append("<h3 class='temps'></h3>");
-  //$(".temps").hide();
-  var ph = "table:contains(Location Information) td:contains";
-  var hp = "table:contains(User Selected Match) td:contains";
-  var sr = "#search-results";
-  var dt = ["#locationName",ph+"(Address:) ~ td",ph+"(Address 2:) ~ td",ph+"(Phone):eq(0) ~ td",ph+"(Local Phone) ~ td",ph+"(City):eq(0) ~ td"];
-  $("input[type='submit']").click(function(){
-    $("mark").contents().unwrap();
-    $(sr).insertBefore(".clear:eq(4)");
-    $(hp+"(City:)").css('background-color','');
-    $("#search-results img").parent().css('background-color','');
-    //$(".temps").remove();
-  });
-  if($(":contains(Stop Processing Continuously)").length){
-    $("a:contains(Stop Processing Continuously)")[0].click();
-  }
-  //HIGHLIGHT
-  function hma(worda,wordb){
-    var ta = $(worda).text();
-    var tb = $(wordb).text();
-    var t1 = ta.split(/[ -\-,.|&'/\\]+/);
-    var t2 = tb.split(/[ -\-,.|&'/\\]+/);
-    t1.sort(function(a,b){
-      return b.length-a.length;
-    });
-    t2.sort(function(a,b){
-      return b.length-a.length;
-    });
-    var re;
-    t1.forEach(function(word){
-      if(word.length > 2 && isNaN(word)){
-        re = new RegExp(word,"gi");
-        if(re.test(tb)){
-          $(wordb).contents().filter(function(i,el){return el.nodeType === 3;}).each(function(i,el){ 
-            var $el = $(el);
-            var rp = $el.text().replace(re,function(str){return "<mark>"+str+"</mark>"});
-            $el.replaceWith(rp);
-          });
-          ta = ta.replace(word,"");
-        }
-      }
-      else{
-        re = new RegExp("\\b"+word+"\\b","gi");
-        if(re.test(tb)){
-          $(wordb).contents().filter(function(i,el){return el.nodeType === 3;}).each(function(i,el){ 
-            var $el = $(el);
-            var rp = $el.text().replace(re,function(str){return "<mark>"+str+"</mark>"});
-            $el.replaceWith(rp);
-          });
-        }
-      }
-    });
-    t2.forEach(function(word){
-      if(word.length > 2 && isNaN(word)){
-        re = new RegExp(word,"gi");
-        if(re.test(ta)){
-          $(wordb).contents().filter(function(i,el){return el.nodeType === 3;}).each(function(i,el){ 
-            var $el = $(el);
-            var rp = $el.text().replace(re,function(str){return "<mark>"+str+"</mark>"});
-            $el.replaceWith(rp);
-          });
-        }
-      }
-      else{
-        re = new RegExp("\\b"+word+"\\b","gi");
-        if(re.test(ta)){
-          $(wordb).contents().filter(function(i,el){return el.nodeType === 3;}).each(function(i,el){ 
-            var $el = $(el);
-            var rp = $el.text().replace(re,function(str){return "<mark>"+str+"</mark>"});
-            $el.replaceWith(rp);
-          });
-        }
-      }
-    });
-  }
-  //MOVE&LOOP
-  function lop(){
-    if($(":contains(error code: 502)").length || $(":contains(Scanning Unavailable Exception)").length || $(":contains(RpcException occurred)").length || $(":contains(SearchListings call has been timed out.)").length || $(":contains(503 Service Unavailable)").length || $(":contains(502 Bad Gateway)").length || $(":contains(Exception making a proxy request to Url)").length){
-      close();
-    }
-    $(sr).insertAfter(".verticalContainer:contains(Location Information)");
-    $(sr).insertAfter(".verticalContainer:contains(User Selected Match)");
-    for(i = 1;i < $(sr+" tbody tr").length;i++){
-      var ti = sr+" tr:eq("+i+") ";
-      hma(dt[0],ti+"td:eq(1) span:eq(0)");
-      hma(dt[1],ti+"td:eq(2) span:eq(0)");
-      hma(dt[2],ti+"td:eq(2) span:eq(1)");
-      hma(dt[3],ti+"td:eq(1) span:eq(1)");
-      hma(dt[4],ti+"td:eq(1) span:eq(1)");
-      hma(dt[5],ti+"td:eq(2) span:eq(1)");
-      hma(dt[5],ti+"td:eq(2) span:eq(2)");
-    }
-  }
-  //PROCESS
-  function proclist(){
-    $("input[value='add']").click();
-    $("input[value='Process Task']").click();
-  }
-  //OK&ERROR
-  if($(":contains(This task was already complete)").length || $("#error-detail").length){
-    close();
-  }
-  //TASKCOUNT
-  if(h == "My Tasks"){
-    $(".headerRow td").text("Tasks To Be Processed - " + $("td>img").length);
-  }
-  //SUPPRESS
-  if(h == "Suppression Approval"){
-    window.scrollTo(0,260);
-  }
-  //GEO
-  if(h.includes("Geocode Validation") || h.includes("Healthcare")){
-    window.scrollTo(0,175);
-  }
-  //MATCH
-  if(h.includes("Tags Manual Match Verification")){
-    window.scrollTo(25,185);
-    hma(dt[0],hp+"(Name:) ~ td a");
-    $(hp+"(Address)").each(function(ix){
-      hma(dt[1],hp+"(Address):eq("+ix+") ~ td");
-    });
-    hma(dt[2],hp+"(Address:) ~ td");
-    hma(dt[3],hp+"(Phone:) ~ td");
-    hma(dt[4],hp+"(Phone:) ~ td");
-    hma(dt[5],hp+"(City:) ~ td");
-    lop();
-    var obs = new MutationObserver(function(mutations){
-      lop();
-    });
-    obs.observe(document.querySelector(sr),{attributes:true,childList:true,characterData:true});
-    if($(dt[5]).text().toLowerCase() != $(hp+"(City:) ~ td").text().toLowerCase()){
-      $(hp+"(City:)").css('background-color','pink');
-    }
-  }
-  //LISTING
-  if(h.includes("Tags Missing Listing Verification")){
-    window.scrollTo(25,185);
-    //NO SEARCH RESULTS
-    if($(":contains(No search results)").length){
-      //close();
-      //proclist();
-    }
-    //SCANNING
-    //else 
-    //RESULTS
-    else{
-      lop();
-    }
-    //LOADING
-    var observer = new MutationObserver(function(mutations){
-      //NO SEARCH RESULTS
-      if($(":contains(No search results)").length){
-        //close();
-        //proclist();
-      }
-      //SCANNING
-      //RESULTS
-      else{
-        lop();
-      }
-    });
-    observer.observe(document.querySelector(sr),{attributes:true,childList:true,characterData:true});
-  }
-});
 //SHORTCUT KEYS-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function(){
   var sl = [];
@@ -361,6 +193,174 @@ $(document).ready(function(){
         break;
     }
   });
+});
+//DASHBOARD-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$(document).ready(function(){
+  var h = $("h1:eq(0)").text();
+  //$("body").append("<h2 class='temps'></h2>");
+  //$("body").append("<h3 class='temps'></h3>");
+  //$(".temps").hide();
+  var ph = "table:contains(Location Information) td:contains";
+  var hp = "table:contains(User Selected Match) td:contains";
+  var sr = "#search-results";
+  var dt = ["#locationName",ph+"(Address:) ~ td",ph+"(Address 2:) ~ td",ph+"(Phone):eq(0) ~ td",ph+"(Local Phone) ~ td",ph+"(City):eq(0) ~ td"];
+  $("input[type='submit']").click(function(){
+    $("mark").contents().unwrap();
+    $(sr).insertBefore(".clear:eq(4)");
+    $(hp+"(City:)").css('background-color','');
+    $("#search-results img").parent().css('background-color','');
+    //$(".temps").remove();
+  });
+  if($(":contains(Stop Processing Continuously)").length){
+    $("a:contains(Stop Processing Continuously)")[0].click();
+  }
+  //HIGHLIGHT
+  function hma(worda,wordb){
+    var ta = $(worda).text();
+    var tb = $(wordb).text();
+    var t1 = ta.split(/[ -\-,.|&'/\\]+/);
+    var t2 = tb.split(/[ -\-,.|&'/\\]+/);
+    t1.sort(function(a,b){
+      return b.length-a.length;
+    });
+    t2.sort(function(a,b){
+      return b.length-a.length;
+    });
+    var re;
+    t1.forEach(function(word){
+      if(word.length > 2 && isNaN(word)){
+        re = new RegExp(word,"gi");
+        if(re.test(tb)){
+          $(wordb).contents().filter(function(i,el){return el.nodeType === 3;}).each(function(i,el){ 
+            var $el = $(el);
+            var rp = $el.text().replace(re,function(str){return "<mark>"+str+"</mark>"});
+            $el.replaceWith(rp);
+          });
+          ta = ta.replace(word,"");
+        }
+      }
+      else{
+        re = new RegExp("\\b"+word+"\\b","gi");
+        if(re.test(tb)){
+          $(wordb).contents().filter(function(i,el){return el.nodeType === 3;}).each(function(i,el){ 
+            var $el = $(el);
+            var rp = $el.text().replace(re,function(str){return "<mark>"+str+"</mark>"});
+            $el.replaceWith(rp);
+          });
+        }
+      }
+    });
+    t2.forEach(function(word){
+      if(word.length > 2 && isNaN(word)){
+        re = new RegExp(word,"gi");
+        if(re.test(ta)){
+          $(wordb).contents().filter(function(i,el){return el.nodeType === 3;}).each(function(i,el){ 
+            var $el = $(el);
+            var rp = $el.text().replace(re,function(str){return "<mark>"+str+"</mark>"});
+            $el.replaceWith(rp);
+          });
+        }
+      }
+      else{
+        re = new RegExp("\\b"+word+"\\b","gi");
+        if(re.test(ta)){
+          $(wordb).contents().filter(function(i,el){return el.nodeType === 3;}).each(function(i,el){ 
+            var $el = $(el);
+            var rp = $el.text().replace(re,function(str){return "<mark>"+str+"</mark>"});
+            $el.replaceWith(rp);
+          });
+        }
+      }
+    });
+  }
+  //MOVE&LOOP
+  function lop(){
+    if($(":contains(error code: 502)").length || $(":contains(Scanning Unavailable Exception)").length || $(":contains(RpcException occurred)").length || $(":contains(SearchListings call has been timed out.)").length || $(":contains(503 Service Unavailable)").length || $(":contains(502 Bad Gateway)").length || $(":contains(Exception making a proxy request to Url)").length){
+      close();
+    }
+    $(sr).insertAfter(".verticalContainer:contains(Location Information)");
+    $(sr).insertAfter(".verticalContainer:contains(User Selected Match)");
+    for(i = 1;i < $(sr+" tbody tr").length;i++){
+      var ti = sr+" tr:eq("+i+") ";
+      hma(dt[0],ti+"td:eq(1) span:eq(0)");
+      hma(dt[1],ti+"td:eq(2) span:eq(0)");
+      hma(dt[2],ti+"td:eq(2) span:eq(1)");
+      hma(dt[3],ti+"td:eq(1) span:eq(1)");
+      hma(dt[4],ti+"td:eq(1) span:eq(1)");
+      hma(dt[5],ti+"td:eq(2) span:eq(1)");
+      hma(dt[5],ti+"td:eq(2) span:eq(2)");
+    }
+  }
+  //PROCESS
+  function proclist(){
+    $("input[value='add']").click();
+    $("input[value='Process Task']").click();
+  }
+  //OK&ERROR
+  if($(":contains(This task was already complete)").length || $("#error-detail").length){
+    close();
+  }
+  //TASKCOUNT
+  if(h == "My Tasks"){
+    $(".headerRow td").text("Tasks To Be Processed - " + $("td>img").length);
+  }
+  //SUPPRESS
+  if(h == "Suppression Approval"){
+    window.scrollTo(0,260);
+  }
+  //GEO
+  if(h.includes("Geocode Validation") || h.includes("Healthcare")){
+    window.scrollTo(0,175);
+  }
+  //MATCH
+  if(h.includes("Tags Manual Match Verification")){
+    window.scrollTo(25,185);
+    hma(dt[0],hp+"(Name:) ~ td a");
+    $(hp+"(Address)").each(function(ix){
+      hma(dt[1],hp+"(Address):eq("+ix+") ~ td");
+    });
+    hma(dt[2],hp+"(Address:) ~ td");
+    hma(dt[3],hp+"(Phone:) ~ td");
+    hma(dt[4],hp+"(Phone:) ~ td");
+    hma(dt[5],hp+"(City:) ~ td");
+    lop();
+    var obs = new MutationObserver(function(mutations){
+      lop();
+    });
+    obs.observe(document.querySelector(sr),{attributes:true,childList:true,characterData:true});
+    if($(dt[5]).text().toLowerCase() != $(hp+"(City:) ~ td").text().toLowerCase()){
+      $(hp+"(City:)").css('background-color','pink');
+    }
+  }
+  //LISTING
+  if(h.includes("Tags Missing Listing Verification")){
+    window.scrollTo(25,185);
+    //NO SEARCH RESULTS
+    if($(":contains(No search results)").length){
+      //close();
+      //proclist();
+    }
+    //SCANNING
+    //else 
+    //RESULTS
+    else{
+      lop();
+    }
+    //LOADING
+    var observer = new MutationObserver(function(mutations){
+      //NO SEARCH RESULTS
+      if($(":contains(No search results)").length){
+        //close();
+        //proclist();
+      }
+      //SCANNING
+      //RESULTS
+      else{
+        lop();
+      }
+    });
+    observer.observe(document.querySelector(sr),{attributes:true,childList:true,characterData:true});
+  }
 });
 //MANAGE TOOLS--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function(){
