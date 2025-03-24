@@ -91,7 +91,6 @@ $(document).ready(function(){
   $(document).keydown(function(e){
     switch(e.keyCode){
       case keyCodes[matchnotselectable_number]:
-        alert("good");
         if(n == "Geocode Validation"){
           window.scrollTo(0,document.body.scrollHeight);
           $("textarea[name='reason']").val('city in business name');
@@ -114,7 +113,7 @@ $(document).ready(function(){
           }
         }
         break;
-      case unverified_notadupe:
+      case keyCodes[unverified_notadupe]:
         if(n == "Suppression Approval"){
           $(".accept-btn:eq("+b+")").click();
           $(".reject-btn:eq("+b+")").val(13);
@@ -127,7 +126,7 @@ $(document).ready(function(){
         $(".js-latlng").val("");
         $("input[value='EXISTING']").click();
         break;
-      case match_bestguess:
+      case keyCodes[match_bestguess]:
         if(n == "Suppression Approval"){
           $(".reject-btn:eq("+b+")").val(8);
           $(".reject-btn:eq("+b+")").change(); 
@@ -145,13 +144,13 @@ $(document).ready(function(){
         $("input[value='accept']").click();
         $("input[value='MANUAL']").click();
         break;
-      case listing_geosuccess_suppress:
+      case keyCodes[listing_geosuccess_suppress]:
         $(".js-entered-radio").click();
         $("input[value='add']").click();
         $("input[value='NONE']").click();
         $(".accept-btn:eq("+b+")").click();
         break;
-      case previoussearchresult:
+      case keyCodes[previoussearchresult]:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
           if(c == 0 || c == 1){
@@ -175,7 +174,7 @@ $(document).ready(function(){
           $(".js-external-id:eq("+b+")").click();
         }
         break;
-      case nextsearchresult:
+      case keyCodes[nextsearchresult]:
         if(n == "Suppression Approval"){
           var l = $(".accept-btn").length;
           if(c == 0 || c == l) {
@@ -199,7 +198,7 @@ $(document).ready(function(){
           $(".js-external-id:eq("+b+")").click();
         }
         break;
-      case open_all_tasks:
+      case keyCodes[open_all_tasks]:
         if(n == "My Tasks"){
           sl = [];
           var ab = $("a[target='_blank']").length;
@@ -208,7 +207,7 @@ $(document).ready(function(){
           }
         }
         break;
-      case open_link_geo:
+      case keyCodes[open_link_geo]:
         if(n == "Suppression Approval"){
           window.open($("td:contains(Website:) ~ td>a").attr('href'),'','resizable,height=980,width=940');
         }
