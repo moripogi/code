@@ -471,7 +471,6 @@ $(document).ready(function(){
       l = $("tbody tr").length;
       var i = 0;
       $(".clear:eq(1)").remove();
-      alert(am);
       while(i<l){
         var d = $("span:eq("+i+")").text().replace(/\s/g,'');
         if(am.includes(d)){
