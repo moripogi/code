@@ -364,6 +364,7 @@ $(document).ready(function(){
 });
 //MANAGE TOOLS--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $(document).ready(function(){
+  const namelist = am;
   var h = $("h1:eq(0)").text();
   var w = window.name;
   var l;
@@ -473,7 +474,7 @@ $(document).ready(function(){
       $(".clear:eq(1)").remove();
       while(i<l){
         var d = $("span:eq("+i+")").text().replace(/\s/g,'');
-        if(am.includes(d)){
+        if(namelist.includes(d)){
           i++;
         }
         else{
