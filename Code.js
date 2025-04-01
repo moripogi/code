@@ -474,6 +474,7 @@ $(document).ready(function(){
       while(i<l){
         var d = $("span:eq("+i+")").text().replace(/\s/g,'');
         if(am.includes(d)){
+          alert(d);
           i++;
         }
         else{
