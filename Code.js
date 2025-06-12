@@ -422,9 +422,6 @@ $(document).ready(function(){
     if(w.includes("API")){
       sw(146);
     }
-    $("#API").click(function(){
-        pr("API");
-      });
     if(w.includes("Int")){
       if($("input[name='userView.isInternal']").is(":checked")){
         close();
@@ -527,6 +524,9 @@ $(document).ready(function(){
       });
       $("#Unv").click(function(){
         pr("Unv");
+      });
+      $("#API").click(function(){
+        pr("API");
       });
       $("#Int").click(function(){
         pr("Int");
