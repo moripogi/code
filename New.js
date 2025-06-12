@@ -171,7 +171,7 @@ $(document).ready(function(){
   var h = $("h1:eq(0)").text();
   var w = window.name;
   var l;
-  var lob = ["Match","Listing","Suppress","Geocode","Unverified","Clear","Internal","External","Manager","Remove Manager"];
+  var lob = ["Match","Listing","Suppress","Geocode","Unverified","API","Clear","Internal","External","Manager","Remove Manager"];
   function pr(x){
     for(c=0;c<l;c++){
       if($(".x:eq("+c+")").prop("checked")){
@@ -222,6 +222,9 @@ $(document).ready(function(){
     }
     if(w.includes("Unv")){
       sw(126);
+    }
+    if(w.includes("API")){
+      sw(146);
     }
     if(w.includes("Int")){
       if($("input[name='userView.isInternal']").is(":checked")){
@@ -325,6 +328,9 @@ $(document).ready(function(){
       });
       $("#Unv").click(function(){
         pr("Unv");
+      });
+      $("#API").click(function(){
+        pr("API");
       });
       $("#Int").click(function(){
         pr("Int");
