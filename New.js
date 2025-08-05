@@ -13,7 +13,7 @@ $(document).ready(function(){
     $(sr).insertBefore(".clear:eq(4)");
     $(hp+"(City:)").css('background-color','');
     $("#search-results img").parent().css('background-color','');
-    //$(".temps").remove();
+    $(".temps").remove();
   });
   if($(":contains(Stop Processing Continuously)").length){
     $("a:contains(Stop Processing Continuously)")[0].click();
@@ -84,6 +84,22 @@ $(document).ready(function(){
     }
     $(sr).insertAfter(".verticalContainer:contains(Location Information)");
     $(sr).insertAfter(".verticalContainer:contains(User Selected Match)");
+    for(i = 1;i < $(sr+" tbody tr").length;i++){
+      var ti = sr+" tr:eq("+i+") ";
+      hma(dt[0],ti+"td:eq(1) span:eq(0)");
+      hma(dt[1],ti+"td:eq(2) span:eq(0)");
+      hma(dt[2],ti+"td:eq(2) span:eq(1)");
+      hma(dt[3],ti+"td:eq(1) span:eq(1)");
+      hma(dt[4],ti+"td:eq(1) span:eq(1)");
+      hma(dt[5],ti+"td:eq(2) span:eq(1)");
+      hma(dt[5],ti+"td:eq(2) span:eq(2)");
+    }
+  }
+  //LOOP2
+  function lop2(){
+    if($(":contains(error code: 502)").length || $(":contains(502 Bad Gateway)").length){
+      close();
+    }
     for(i = 1;i < $(sr+" tbody tr").length;i++){
       var ti = sr+" tr:eq("+i+") ";
       hma(dt[0],ti+"td:eq(1) span:eq(0)");
