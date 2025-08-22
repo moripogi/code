@@ -84,7 +84,7 @@ $(document).ready(function(){
     }
     $(sr).insertAfter(".verticalContainer:contains(Location Information)");
     $(sr).insertAfter(".verticalContainer:contains(User Selected Match)");
-    for(i = 1;i < $(sr+" tbody tr").length;i++){
+    for(let i = 1;i < $(sr+" tbody tr").length;i++){
       var ti = sr+" tr:eq("+i+") ";
       hma(dt[0],ti+"td:eq(1) span:eq(0)");
       hma(dt[1],ti+"td:eq(2) span:eq(0)");
@@ -100,7 +100,7 @@ $(document).ready(function(){
     if($(":contains(error code: 502)").length || $(":contains(502 Bad Gateway)").length){
       close();
     }
-    for(i = 1;i < $(sr+" tbody tr").length;i++){
+    for(let i = 1;i < $(sr+" tbody tr").length;i++){
       var ti = sr+" tr:eq("+i+") ";
       hma(dt[0],ti+"td:eq(1) span:eq(0)");
       hma(dt[1],ti+"td:eq(2) span:eq(0)");
@@ -209,7 +209,7 @@ $(document).ready(function(){
   var l;
   var lob = ["Match","Listing","Suppress","Geocode","Unverified","API","Clear","Internal","External","Manager","Remove Manager"];
   function pr(x){
-    for(c=0;c<l;c++){
+    for(let c = 0; c < l; c++){
       if($(".x:eq("+c+")").prop("checked")){
         var w = window.open($("a:contains(edit):eq("+c+")").attr("href"),x+c);
       }
@@ -226,7 +226,7 @@ $(document).ready(function(){
     {
       var c = $("a:contains(Audit)").length;
       $("#content").append("<table><tbody id='sa'></tbody></table>");
-      for(i=0;i<c;i++){
+      for(let i = 0; i < c; i++){
         var j = $("a:contains(Audit):eq("+i+")").attr("href");
         ct(j);
       }
@@ -328,7 +328,7 @@ $(document).ready(function(){
       $("td:contains(password)").remove();
       $("td:has(.link-input)").hide();
       $("tbody tr").append("<td><button class='w'>clear</button></td><td><input type='checkbox' class='x'></td>");
-      for(i=0;i<lob.length;i++){
+      for(let i = 0; i < lob.length; i++){
         $("#content").append("<td><button id='"+lob[i].substring(0,3)+"'>"+lob[i]+"</button></td>");
       }
       var t = "tbody:eq(0) .x";
@@ -341,7 +341,7 @@ $(document).ready(function(){
         }
       });
       $("#z").click(function(){
-        for(i=0;i<$(t).length;i++){
+        for(let i = 0; i < $(t).length; i++){
           if($(".x:eq("+i+")").prop("checked")){
             $(".x:eq("+i+")").prop("checked",false);
           }
@@ -381,7 +381,7 @@ $(document).ready(function(){
         pr("Rem");
       });
       $("#Cle").click(function(){
-        for(i=0;i<l;i++){
+        for(let i = 0; i < l; i++){
           if($(".x:eq("+i+")").prop("checked")){
             window.open(window.location.href,$("form:has(.link-input):eq("+i+")").attr("action"));
           }
