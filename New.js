@@ -136,10 +136,9 @@ $(document).ready(function(){
   if(h == "AutoMatching Verification"){
     let tries = 0;
     let interval = setInterval(function() {
-    $(dt[0])[0].scrollIntoView({ behavior: "auto", block: "start" });
-    }
-    if (++tries > 5) clearInterval(interval); 
-  }, 300);
+      $(dt[0])[0].scrollIntoView({ behavior: "auto", block: "start" });
+      if (++tries > 5) clearInterval(interval); 
+    }, 300);
   }
   if(h.includes("Tags Manual Match Verification")){
     window.scrollTo(25,185);
@@ -154,6 +153,7 @@ $(document).ready(function(){
     lop();
     var obs = new MutationObserver(function(mutations){
       lop();
+      observer.disconnect();
     });
     obs.observe(document.querySelector(sr),{attributes:true,childList:true,characterData:true});
     if($(dt[5]).text().toLowerCase() != $(hp+"(City:) ~ td").text().toLowerCase()){
@@ -186,6 +186,7 @@ $(document).ready(function(){
       else{
         lop();
       }
+      observer.disconnect();
     });
     observer.observe(document.querySelector(sr),{attributes:true,childList:true,characterData:true});
   }
