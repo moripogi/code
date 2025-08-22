@@ -134,7 +134,12 @@ $(document).ready(function(){
   }
   //MATCH
   if(h == "AutoMatching Verification"){
-    window.scrollTo(0,200);
+    let tries = 0;
+    let interval = setInterval(function() {
+    $(dt[0])[0].scrollIntoView({ behavior: "auto", block: "start" });
+    }
+    if (++tries > 5) clearInterval(interval); 
+  }, 300);
   }
   if(h.includes("Tags Manual Match Verification")){
     window.scrollTo(25,185);
