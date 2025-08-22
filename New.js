@@ -126,13 +126,16 @@ $(document).ready(function(){
   }
   //SUPPRESS
   if(h == "Suppression Approval" || h == "AutoMatching Verification"){
-    window.scrollTo(0,260);
+    window.scrollTo(0,210);
   }
   //GEO
   if(h.includes("Geocode Validation") || h.includes("Healthcare")){
     window.scrollTo(0,175);
   }
   //MATCH
+  if(h == "AutoMatching Verification"){
+    window.scrollTo(0,200);
+  }
   if(h.includes("Tags Manual Match Verification")){
     window.scrollTo(25,185);
     hma(dt[0],hp+"(Name:) ~ td a");
