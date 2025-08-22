@@ -125,23 +125,31 @@ $(document).ready(function(){
     $(".headerRow td").text("Tasks To Be Processed - " + $("td>img").length);
   }
   //SUPPRESS
-  if(h == "Suppression Approval" || h == "AutoMatching Verification"){
-    window.scrollTo(0,210);
+  if(h == "Suppression Approval"){
+    let ro = new ResizeObserver(function() {
+      $(window).scrollTop(210);
+    });
+    ro.observe(document.body);
   }
   //GEO
   if(h.includes("Geocode Validation") || h.includes("Healthcare")){
-    window.scrollTo(0,175);
+    let ro = new ResizeObserver(function() {
+      $(window).scrollTop(175);
+    });
+    ro.observe(document.body);
   }
   //MATCH
   if(h == "AutoMatching Verification"){
-    let tries = 0;
-    let interval = setInterval(function() {
+    let ro = new ResizeObserver(function() {
       $(dt[0])[0].scrollIntoView({ behavior: "auto", block: "start" });
-      if (++tries > 5) clearInterval(interval); 
-    }, 300);
+    });
+    ro.observe(document.body);
   }
   if(h.includes("Tags Manual Match Verification")){
-    window.scrollTo(25,185);
+    let ro = new ResizeObserver(function() {
+      window.scrollTo(25,185);
+    });
+    ro.observe(document.body);
     hma(dt[0],hp+"(Name:) ~ td a");
     $(hp+"(Address)").each(function(ix){
       hma(dt[1],hp+"(Address):eq("+ix+") ~ td");
@@ -162,7 +170,10 @@ $(document).ready(function(){
   }
   //LISTING
   if(h.includes("Tags Missing Listing Verification")){
-    window.scrollTo(25,185);
+    let ro = new ResizeObserver(function() {
+      window.scrollTo(25,185);
+    });
+    ro.observe(document.body);
     //NO SEARCH RESULTS
     if($(":contains(No search results)").length){
       //close();
