@@ -125,7 +125,7 @@ $(document).ready(function(){
     $(".headerRow td").text("Tasks To Be Processed - " + $("td>img").length);
   }
   //SUPPRESS
-  if(h == "Suppression Approval"){
+  if(h == "Suppression Approval" || h == "AutoMatching Verification"){
     window.scrollTo(0,260);
   }
   //GEO
