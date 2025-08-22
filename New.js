@@ -161,7 +161,7 @@ $(document).ready(function(){
     lop();
     var obs = new MutationObserver(function(mutations){
       lop();
-      observer.disconnect();
+      obs.disconnect();
     });
     obs.observe(document.querySelector(sr),{attributes:true,childList:true,characterData:true});
     if($(dt[5]).text().toLowerCase() != $(hp+"(City:) ~ td").text().toLowerCase()){
