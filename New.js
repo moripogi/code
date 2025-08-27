@@ -8,6 +8,10 @@ $(document).ready(function(){
   var hp = "table:contains(User Selected Match) td:contains";
   var sr = "#search-results";
   var dt = ["#locationName",ph+"(Address:) ~ td",ph+"(Address 2:) ~ td",ph+"(Phone):eq(0) ~ td",ph+"(Local Phone) ~ td",ph+"(City):eq(0) ~ td"];
+  if($(":contains(Stop Processing Continuously)").length){
+    $("a:contains(Stop Processing Continuously)")[0].click();
+  }
+  //SUBMIT
   $("input[type='submit']").click(function(){
     $("mark").contents().unwrap();
     $(sr).insertBefore(".clear:eq(4)");
@@ -15,9 +19,10 @@ $(document).ready(function(){
     $("#search-results img").parent().css('background-color','');
     $(".temps").remove();
   });
-  if($(":contains(Stop Processing Continuously)").length){
-    $("a:contains(Stop Processing Continuously)")[0].click();
-  }
+  $(".taskprocessing-submit").click(function(){
+    $("mark").contents().unwrap();
+    $(".temps").remove();
+  });
   //HIGHLIGHT
   function hma(worda,wordb){
     var ta = $(worda).text();
@@ -102,13 +107,8 @@ $(document).ready(function(){
     }
     for(let i = 1;i < $(sr+" tbody tr").length;i++){
       var ti = sr+" tr:eq("+i+") ";
-      hma(dt[0],ti+"td:eq(1) span:eq(0)");
-      hma(dt[1],ti+"td:eq(2) span:eq(0)");
-      hma(dt[2],ti+"td:eq(2) span:eq(1)");
-      hma(dt[3],ti+"td:eq(1) span:eq(1)");
-      hma(dt[4],ti+"td:eq(1) span:eq(1)");
-      hma(dt[5],ti+"td:eq(2) span:eq(1)");
-      hma(dt[5],ti+"td:eq(2) span:eq(2)");
+      hma(dt[0],ti+"td:eq(0) span:eq(0)");
+      hma(dt[1],ti+"td:eq(1) span:eq(0)");
     }
   }
   //PROCESS
@@ -127,7 +127,7 @@ $(document).ready(function(){
   //SUPPRESS
   if(h == "Suppression Approval"){
     let ro = new ResizeObserver(function() {
-      $(window).scrollTop(210);
+      $("td:contains(Location Information)")[0].scrollIntoView({ behavior: "auto", block: "start" });
     });
     ro.observe(document.body);
   }
@@ -141,13 +141,14 @@ $(document).ready(function(){
   //MATCH
   if(h == "AutoMatching Verification"){
     let ro = new ResizeObserver(function() {
-      $(dt[0])[0].scrollIntoView({ behavior: "auto", block: "start" });
+      $("td:contains(Location Information)")[0].scrollIntoView({ behavior: "auto", block: "start" });
     });
     ro.observe(document.body);
+    lop2();
   }
-  if(h.includes("Tags Manual Match Verification")){
+  if(h == "Tags Manual Match Verification"){
     let ro = new ResizeObserver(function() {
-      window.scrollTo(25,185);
+      $("td:contains(Location Information)")[0].scrollIntoView({ behavior: "auto", block: "start" });
     });
     ro.observe(document.body);
     hma(dt[0],hp+"(Name:) ~ td a");
@@ -169,9 +170,9 @@ $(document).ready(function(){
     }
   }
   //LISTING
-  if(h.includes("Tags Missing Listing Verification")){
+  if(h == "Tags Missing Listing Verification"){
     let ro = new ResizeObserver(function() {
-      window.scrollTo(25,185);
+      $("td:contains(Location Information)")[0].scrollIntoView({ behavior: "auto", block: "start" });
     });
     ro.observe(document.body);
     //NO SEARCH RESULTS
