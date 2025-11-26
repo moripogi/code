@@ -208,7 +208,7 @@ $(document).ready(function(){
   var h = $("h1:eq(0)").text();
   var w = window.name;
   var l;
-  var lob = ["Match","List","Sup","Geo","Unv","API","AMV","EAMV","Clear","Internal","External","Manager","Remove Manager"];
+  var lob = ["Match","List","Sup","Geo","Unv","API","AMV","EAV","HC","Clear","Internal","External","Manager","Remove Manager"];
   function pr(x){
     for(let c = 0; c < l; c++){
       if($(".x:eq("+c+")").prop("checked")){
@@ -266,7 +266,7 @@ $(document).ready(function(){
     if(w.includes("AMV")){
       sw(152);
     }
-    if(w.includes("EMV")){
+    if(w.includes("EAV")){
       sw(153);
     }
     if(w.includes("HC")){
@@ -381,8 +381,8 @@ $(document).ready(function(){
       $("#AMV").click(function(){
         pr("AMV");
       });
-      $("#EAMV").click(function(){
-        pr("EMV");
+      $("#EAV").click(function(){
+        pr("EAV");
       });
       $("#HC").click(function(){
         pr("HC");
