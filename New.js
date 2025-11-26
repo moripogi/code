@@ -208,7 +208,7 @@ $(document).ready(function(){
   var h = $("h1:eq(0)").text();
   var w = window.name;
   var l;
-  var lob = ["Match","Listing","Suppress","Geocode","Unverified","API","Clear","Internal","External","Manager","Remove Manager"];
+  var lob = ["Match","List","Sup","Geo","Unv","API","AMV","EAMV","Clear","Internal","External","Manager","Remove Manager"];
   function pr(x){
     for(let c = 0; c < l; c++){
       if($(".x:eq("+c+")").prop("checked")){
@@ -223,7 +223,7 @@ $(document).ready(function(){
     });
   }
   if(h == "Task Processing Details"){
-    if($("#tasktype").val() == 123 || 1)
+    if($("#tasktype").val() == 123 || $("#tasktype").val() == 152 || $("#tasktype").val() == 153)
     {
       var c = $("a:contains(Audit)").length;
       $("#content").append("<table><tbody id='sa'></tbody></table>");
@@ -262,6 +262,15 @@ $(document).ready(function(){
     }
     if(w.includes("API")){
       sw(146);
+    }
+    if(w.includes("AMV")){
+      sw(152);
+    }
+    if(w.includes("EMV")){
+      sw(153);
+    }
+    if(w.includes("HC")){
+      sw(148);
     }
     if(w.includes("Int")){
       if($("input[name='userView.isInternal']").is(":checked")){
@@ -368,6 +377,15 @@ $(document).ready(function(){
       });
       $("#API").click(function(){
         pr("API");
+      });
+      $("#AMV").click(function(){
+        pr("AMV");
+      });
+      $("#EAMV").click(function(){
+        pr("EMV");
+      });
+      $("#HC").click(function(){
+        pr("HC");
       });
       $("#Int").click(function(){
         pr("Int");
