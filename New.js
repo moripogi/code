@@ -139,13 +139,13 @@ $(document).ready(function(){
     ro.observe(document.body);
   }
   //MATCH
-  /*if(h == "AutoMatching Verification" || h == "Enterprise AutoMatching Verification" || ){
+  if(h == "AutoMatching Verification" || h == "Enterprise AutoMatching Verification"){
     let ro = new ResizeObserver(function() {
       $("td:contains(Location Information)")[0].scrollIntoView({ behavior: "auto", block: "start" });
     });
     ro.observe(document.body);
     lop2();
-  }*/
+  }
   if(h == "Tags Manual Match Verification"){
     let ro = new ResizeObserver(function() {
       $("td:contains(Location Information)")[0].scrollIntoView({ behavior: "auto", block: "start" });
