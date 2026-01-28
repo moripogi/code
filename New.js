@@ -27,8 +27,8 @@ $(document).ready(function(){
   function hma(worda,wordb){
     var ta = $(worda).text();
     var tb = $(wordb).text();
-    var t1 = ta.split(/[ -\-,.|&'/\\]+/);
-    var t2 = tb.split(/[ -\-,.|&'/\\]+/);
+    var t1 = ta.split(/[ -\-,.|&'/\\]+/).filter(w => w.length);
+    var t2 = tb.split(/[ -\-,.|&'/\\]+/).filter(w => w.length);
     t1.sort(function(a,b){
       return b.length-a.length;
     });
