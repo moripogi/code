@@ -216,20 +216,21 @@ $(document).ready(function(){
       }
     }
   }
-  function ct(x){
+  function ct(x,y){
     $.get(x,function(response){
-      var s = $(response).find(".js-duplicate-item").length;
+      let s = (y == 123) ? $(response).find(".js-duplicate-item").length : $(response).find(".decision.dropdown").length;
       $("#sa").append("<tr><td><a href='"+x+"'>"+x+"</a></td><td>"+s+"</td></tr>");
     });
   }
   if(h == "Task Processing Details"){
-    if($("#tasktype").val() == 123 || $("#tasktype").val() == 152 || $("#tasktype").val() == 153)
+    var tsktyp = $("#tasktype").val();
+    if(tsktyp == 123 || tsktyp == 152 || tsktyp == 153)
     {
       var c = $("a:contains(Audit)").length;
       $("#content").append("<table><tbody id='sa'></tbody></table>");
       for(let i = 0; i < c; i++){
         var j = $("a:contains(Audit):eq("+i+")").attr("href");
-        ct(j);
+        ct(j,tsktyp);
       }
     }
   }
