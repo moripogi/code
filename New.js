@@ -218,7 +218,9 @@ $(document).ready(function(){
   }
   function ct(x,y){
     $.get(x,function(response){
-      let s = (y == 123) ? $(response).find(".js-duplicate-item").length : $(response).find(".decision.dropdown").length;
+      let s = (y == 123) 
+        ? $(response).find(".js-duplicate-item").length 
+        : $(response).find(".decision-dropdown").length;
       $("#sa").append("<tr><td><a href='"+x+"'>"+x+"</a></td><td>"+s+"</td></tr>");
     });
   }
