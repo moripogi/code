@@ -220,7 +220,7 @@ $(document).ready(function(){
     $.get(x,function(response){
       let s = (y == 123) 
         ? $(response).find(".js-duplicate-item").length 
-        : $(response).find(".decision-dropdown").length;
+        : $(response).find("form:eq(0) .decision-dropdown").length;
       $("#sa").append("<tr><td><a href='"+x+"'>"+x+"</a></td><td>"+s+"</td></tr>");
     });
   }
