@@ -219,7 +219,7 @@ $(document).ready(function(){
   function ct(x,y){
     $.get(x,function(response){
       let s = (y == 123) 
-        ? $(response).find(".js-duplicate-item").length 
+        ? $(response).find("tbody:last .js-duplicate-item").length 
         : $(response).find("form:eq(0) .decision-dropdown").length;
       $("#sa").append("<tr><td><a href='"+x+"'>"+x+"</a></td><td>"+s+"</td></tr>");
     });
