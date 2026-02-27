@@ -107,7 +107,7 @@ $(document).ready(function(){
     }
     for(let i = 1;i < $(sr+" tbody tr").length;i++){
       var ti = sr+" tr:eq("+i+") ";
-      hma(dt[0],ti+"td:eq(0) a:eq(0)");
+      hma(dt[0],ti+"td:eq(0), "+ti+"td:eq(0) a:eq(0)");
       hma(dt[1],ti+"td:eq(1)");
     }
   }
